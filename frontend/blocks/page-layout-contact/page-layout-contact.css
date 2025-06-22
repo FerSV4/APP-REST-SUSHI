@@ -32,11 +32,18 @@
 }
 
 .page-layout__sidebar {
+<<<<<<< HEAD
     background-color: #181818;
+=======
+>>>>>>> 0602720 (Resolucion de conflicto GIT)
     padding: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr; 
+<<<<<<< HEAD
     gap: 30px;
+=======
+    gap: 20px;
+>>>>>>> 0602720 (Resolucion de conflicto GIT)
     color: white;
 }
