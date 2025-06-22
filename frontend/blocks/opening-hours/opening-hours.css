@@ -1,5 +1,4 @@
 .opening-hours {
-    /* SOLUCIÓN: Añadimos borde, padding y un borde redondeado a la tarjeta */
     border: 1px solid #333;
     border-radius: 12px;
     padding: 25px;
@@ -8,9 +7,7 @@
 .opening-hours__title {
     color: #EFE7D2;
     letter-spacing: 2px;
-    margin: 0 0 30px 0; /* Ajustamos el margen */
-
-    /* SOLUCIÓN: Título más grande y centrado */
+    margin: 0 0 30px 0; 
     font-size: 1.2rem; 
     text-align: center;
     font-weight: lighter;

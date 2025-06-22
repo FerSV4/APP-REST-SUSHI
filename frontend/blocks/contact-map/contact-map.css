@@ -1,9 +1,6 @@
 .contact-map {
-<<<<<<< HEAD
-    position: relative; /* Para posicionar el enlace de la ruta */
-=======
+    position: relative; 
     position: relative;
->>>>>>> 0602720 (Resolucion de conflicto GIT)
     width: 100%;
     height: 100%;
 }
