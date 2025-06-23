@@ -54,8 +54,8 @@ contactPageTemplate.innerHTML = `
             <div class="contact-details__item">
                 <span class="contact-details__label">FOLLOW</span>
                 <div class="contact-details__social-icons">
-                    <a href="#" class="social-links__link" aria-label="Instagram"><img src="assets/icons/instagram-icon.svg"></a>
                     <a href="#" class="social-links__link" aria-label="Facebook"><img src="assets/icons/facebook-icon.svg"></a>
+                    <a href="#" class="social-links__link" aria-label="Instagram"><img src="assets/icons/instagram-icon.svg"></a>
                     <a href="#" class="social-links__link" aria-label="Twitter"><img src="assets/icons/twitter-icon.svg"></a>
                 </div>
             </div>
@@ -71,5 +71,4 @@ class ContactPage extends HTMLElement {
         this.shadowRoot.appendChild(contactPageTemplate.content.cloneNode(true));
     }
 }
-
 customElements.define('contact-page', ContactPage);

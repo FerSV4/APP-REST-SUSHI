@@ -1,4 +1,3 @@
-
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
@@ -28,11 +27,7 @@ template.innerHTML = `
             }
 
             .logo {
-                color: white;
-                text-decoration: none;
-                font-family: 'Times New Roman', serif;
-                font-weight: bold;
-                font-size: 1.5rem;
+                margin-top: 5px;
             }
 
             .hamburger {
@@ -84,16 +79,16 @@ template.innerHTML = `
     
     <div class="left-panel">
         <button class="hamburger">≡</button>
-        <a href="/frontend" class="logo">QITCHEN</a>
+        <a href="/frontend" class="logo"><img src="assets/icons/Qitchen.svg"></a>
         <nav>
-    <a href="#/" data-link>MENU</a>
+    <a href="#/menu" data-link>MENU</a>
     <a href="#/about" data-link>ABOUT</a>
-    <a href="#/contact" data-link class="nav-link--highlight">BOOK A TABLE</a>
+    <a href="#/booktable" data-link class="nav-link--highlight">BOOK A TABLE</a>
 </nav>
     </div>
     <div class="right-panel">
-        <a href="#" class="action-link"><img src="assets/icons/user.svg" alt="Login"></a>
-        <a href="#" class="action-link"><img src="assets/icons/cart.svg" alt="Shopping Cart"></a>
+        <a href="#" class="action-link"><img src="assets/icons/user.svg"></a>
+        <a href="#" class="action-link"><img src="assets/icons/cart.svg"></a>
     </div>
 `;
 
