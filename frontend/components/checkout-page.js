@@ -1,3 +1,6 @@
+import { servicioAuth } from '../services/auth-service.js';
+import { servicioCarrito } from '../services/carrito-observer-single.js';
+
 const checkoutPageTemplate = document.createElement('template');
 checkoutPageTemplate.innerHTML = `
     <link rel="stylesheet" href="blocks/layout-split/layout-split.css">
@@ -25,7 +28,10 @@ checkoutPageTemplate.innerHTML = `
         <aside class="layout-split__sidebar">
             <div class="checkout-container">
                 <section class="order-summary">
-                    <div class="order-summary__total">
+                    <h2 class="order-summary__title">Order Summary</h2>
+                    <div id="summary-items-container">
+                        </div>
+                    <div class="order-summary__line order-summary__total">
                         <span>Total</span>
                         <span id="summary-total-price">$0.00</span>
                     </div>
@@ -51,11 +57,86 @@ checkoutPageTemplate.innerHTML = `
     </div>
 `;
 
+
 class CheckoutPage extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(checkoutPageTemplate.content.cloneNode(true));
+    }
+
+    connectedCallback() {
+        if (!servicioAuth.estaLogueado()) {
+            window.location.hash = '#/login';
+            return;
+        }
+
+        this.formulario = this.shadowRoot.querySelector('.checkout-form');
+        this.contenedorResumen = this.shadowRoot.querySelector('#summary-items-container');
+        this.precioTotalResumen = this.shadowRoot.querySelector('#summary-total-price');
+
+        this.mostrarResumenPedido();
+        
+        this.formulario.addEventListener('submit', evento => {
+            this.manejarEnvioPedido(evento);
+        });
+    }
+
+    mostrarResumenPedido() {
+        const productos = servicioCarrito.obtenerProductos();
+        const total = servicioCarrito.calcularTotal();
+
+        this.contenedorResumen.innerHTML = '';
+
+        if (productos.length === 0) {
+            this.contenedorResumen.innerHTML = `<div class="order-summary__line"><span>Your cart is empty.</span></div>`;
+        } else {
+            productos.forEach(item => {
+                const itemHTML = `
+                    <div class="order-summary__line">
+                        <span>${item.cantidad} x ${item.nombre}</span>
+                        <span>$${(item.precio * item.cantidad).toFixed(2)}</span>
+                    </div>`;
+                this.contenedorResumen.innerHTML += itemHTML;
+            });
+        }
+        
+        this.precioTotalResumen.textContent = `$${total.toFixed(2)}`;
+    }
+
+    async manejarEnvioPedido(evento) {
+        evento.preventDefault();
+        
+        const token = servicioAuth.obtenerToken();
+        const productos = servicioCarrito.obtenerProductos();
+        const total = servicioCarrito.calcularTotal();
+
+        if (productos.length === 0) {
+            alert('Tu carrito está vacío.');
+            return;
+        }
+
+        const respuesta = await fetch('http://localhost:3000/api/pedidos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                productos: productos,
+                total: total
+            })
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert(resultado.mensaje);
+            servicioCarrito.limpiarCarrito();
+            window.location.hash = '#/';
+        } else {
+            alert(`Error al realizar el pedido: ${resultado.mensaje}`);
+        }
     }
 }
 

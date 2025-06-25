@@ -34,7 +34,12 @@ class Carrito {
     calcularTotal() {
         return this.productos.reduce((total, p) => total + (p.precio * p.cantidad), 0);
     }
-}
-
+    
+    limpiarCarrito() {
+        this.productos = [];
+        this.notificar();
+    }
+};
+    
 //Solo se exporta una instancia del carrito (Singleton)
 export const servicioCarrito = new Carrito();

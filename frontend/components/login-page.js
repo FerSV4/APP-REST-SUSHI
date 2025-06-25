@@ -58,9 +58,7 @@ class LoginPage extends HTMLElement {
 
         if (respuesta.ok) {
             alert(resultado.mensaje);
-            // Guardamos el token en el almacenamiento local del navegador
             localStorage.setItem('token', resultado.token);
-            // Redirigimos al usuario a la página principal
             window.location.hash = '#/';
         } else {
             alert(`Error: ${resultado.mensaje}`);

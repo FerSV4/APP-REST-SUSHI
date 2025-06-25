@@ -68,7 +68,7 @@ class RegistrationPage extends HTMLElement {
         const resultado = await respuesta.json();
 
         if (respuesta.ok) {
-            alert(resultado.mensaje); // Muestra "Usuario registrado con éxito"
+            alert(resultado.mensaje);
         } else {
             alert(`Error: ${resultado.mensaje}`);
         }

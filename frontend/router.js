@@ -9,6 +9,7 @@ import './components/registration-page.js';
 import './components/checkout-page.js';
 import './components/blog-page.js';
 import './components/blog-post-page.js';
+import './components/account-page.js';
 
 const router = async () => {
     const routes = [
@@ -23,6 +24,7 @@ const router = async () => {
         { path: "/checkout", view: () => document.createElement('checkout-page') },
         { path: "/blog", view: () => document.createElement('blog-page') },
         { path: "/blogpage", view: () => document.createElement('blog-post-page') },
+        { path: "/account", view: () => document.createElement('account-page') },
         
     ];
 

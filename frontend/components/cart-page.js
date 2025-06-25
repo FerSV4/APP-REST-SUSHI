@@ -80,8 +80,7 @@ class CartPage extends HTMLElement {
     createCartItemHTML(item) {
         const subtotal = item.precio * item.cantidad;
         let descriptionHTML = '';
-        
-        // SOLUCIÓN 1: Usamos 'item.descripcion_detallada' en lugar de 'item.descripcion'
+
         if (item.descripcion_detallada) {
             descriptionHTML = `<p class="cart-item__description">${item.descripcion_detallada}</p>`;
         }
