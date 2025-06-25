@@ -28,7 +28,7 @@ checkoutPageTemplate.innerHTML = `
         <aside class="layout-split__sidebar">
             <div class="checkout-container">
                 <section class="order-summary">
-                    <h2 class="order-summary__title">Order Summary</h2>
+                    <h2 class="order-summary__title">ORDER SUMMARY</h2>
                     <div id="summary-items-container">
                         </div>
                     <div class="order-summary__line order-summary__total">
@@ -76,7 +76,7 @@ class CheckoutPage extends HTMLElement {
         this.precioTotalResumen = this.shadowRoot.querySelector('#summary-total-price');
 
         this.mostrarResumenPedido();
-        
+
         this.formulario.addEventListener('submit', evento => {
             this.manejarEnvioPedido(evento);
         });
