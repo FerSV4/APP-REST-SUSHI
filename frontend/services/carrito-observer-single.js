@@ -36,4 +36,5 @@ class Carrito {
     }
 }
 
+//Solo se exporta una instancia del carrito (Singleton)
 export const servicioCarrito = new Carrito();

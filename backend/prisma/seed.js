@@ -25,17 +25,12 @@ async function main() {
         for (const item of categoria.items) {
             console.log(`  - Añadiendo producto: ${item.nombre}`);
 
-            // --- SOLUCIÓN AQUÍ ---
-            // En lugar de pasar 'categoriaId' directamente, usamos la sintaxis 'connect'
-            // para enlazar el producto con su categoría a través de la relación.
             await prisma.productos.create({
                 data: {
                     nombre: item.nombre,
                     descripcion_detallada: item.descripcion,
                     precio: parseFloat(item.precio),
                     imagen_url: item.imagen,
-                    // El nombre 'categorias' debe coincidir con el nombre de la relación
-                    // en tu archivo 'schema.prisma' (normalmente es el nombre del modelo en plural).
                     categorias: {
                         connect: {
                             id: nuevaCategoria.id,

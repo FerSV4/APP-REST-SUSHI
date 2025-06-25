@@ -3,7 +3,6 @@ const prisma = require('../db');
 const obtenerProductos = async (req, res) => {
     const productos = await prisma.productos.findMany({
         include: {
-            // Se corrige el nombre del campo de la relación a plural.
             categorias: true,
         },
         orderBy: {
@@ -11,9 +10,8 @@ const obtenerProductos = async (req, res) => {
         }
     });
 
-    // Esta lógica de agrupación necesita un pequeño ajuste para usar el nombre correcto.
     const productosAgrupados = productos.reduce((acc, producto) => {
-        // Ahora accedemos a la categoría a través de 'producto.categorias'
+
         const categoriaNombre = producto.categorias.nombre;
         if (!acc[categoriaNombre]) {
             acc[categoriaNombre] = {

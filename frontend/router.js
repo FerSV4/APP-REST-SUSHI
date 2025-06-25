@@ -7,6 +7,8 @@ import './components/cart-page.js';
 import './components/login-page.js';
 import './components/registration-page.js';
 import './components/checkout-page.js';
+import './components/blog-page.js';
+import './components/blog-post-page.js';
 
 const router = async () => {
     const routes = [
@@ -19,6 +21,9 @@ const router = async () => {
         { path: "/login", view: () => document.createElement('login-page') },
         { path: "/register", view: () => document.createElement('registration-page') },
         { path: "/checkout", view: () => document.createElement('checkout-page') },
+        { path: "/blog", view: () => document.createElement('blog-page') },
+        { path: "/blogpage", view: () => document.createElement('blog-post-page') },
+        
     ];
 
     const path = location.hash.slice(1).toLowerCase() || "/";

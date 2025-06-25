@@ -24,7 +24,7 @@ frontPageTemplate.innerHTML = `
         <aside class="page-layout__sidebar">
             <div class="promo-links">
                 <a href="#/menu" class="promo-links__item"><img src="assets/images/promo-menu.png" class="promo-links__image"><span class="promo-links__text">MENU ➲</span></a>
-                <a href="#" class="promo-links__item"><img src="assets/images/promo-reservation.png"class="promo-links__image"><span class="promo-links__text">RESERVATION ➲</span></a>
+                <a href="#/booktable" class="promo-links__item"><img src="assets/images/promo-reservation.png"class="promo-links__image"><span class="promo-links__text">RESERVATION ➲</span></a>
                 <a href="#/about" class="promo-links__item"><img src="assets/images/promo-restaurant.png"class="promo-links__image"><span class="promo-links__text">OUR RESTAURANT ➲</span></a>
             </div>
         </aside>

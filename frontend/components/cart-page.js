@@ -1,4 +1,4 @@
-import { servicioCarrito } from '../services/carrito-observer.js';
+import { servicioCarrito } from '../services/carrito-observer-single.js';
 
 const cartPageTemplate = document.createElement('template');
 cartPageTemplate.innerHTML = `
