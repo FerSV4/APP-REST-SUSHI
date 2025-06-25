@@ -4,7 +4,7 @@
 Este repositorio contiene el desarrollo de una aplicacion web de un restaurante de sushi, este proyecto tiene un enfoque de SPA para el frontend, construido en Vanilla Js, JavaScript y Web Components, uso de api RestFul para el backend, manejado con Node.js, Express y Prisma(ORM)
 
 ## 1. Estructura del Proyecto
-El proyecto sigue una organización monorepo, separando claramente las responsabilidades del frontend y el backend.
+El proyecto sigue una organización clara, separando claramente las responsabilidades del frontend y el backend.
 ```
 APP-REST-SUSHI/
 ├── backend/
@@ -52,52 +52,9 @@ APP-REST-SUSHI/
 └── .gitignore
 ```
 ## 2.BASE DE DATOS
-```
-erDiagram
-    Usuarios {
-        int id PK
-        string nombre
-        string email UK
-        string contrasena_hash
-        tipo_rol rol
-        datetime fecha_registro
-    }
+![Base de datos](/schema_design/DBappweb.png)
 
-    Pedidos {
-        int id PK
-        int usuario_id FK
-        datetime fecha_pedido
-        estado_pedido_enum estado
-        decimal total
-    }
 
-    DetallesPedido {
-        int pedido_id FK
-        int producto_id FK
-        int cantidad
-        decimal precio_unitario
-    }
-
-    Productos {
-        int id PK
-        int categoria_id FK
-        string nombre
-        text descripcion_detallada
-        decimal precio
-        string imagen_url
-    }
-
-    Categorias {
-        int id PK
-        string nombre UK
-        string descripcion
-    }
-
-    Usuarios ||--o{ Pedidos 
-    Pedidos }o--|| DetallesPedido 
-    Productos }o--|| DetallesPedido 
-    Categorias ||--o{ Productos 
-```
 ## 3.Patrones de diseño
 En este proyecto de utilizaron patrones diseño como:
 -Patron Observer
@@ -194,3 +151,6 @@ npm run dev
 * GET /api/productos: Productos por categoria
   
 * POST /api/pedidos: Crea un nuevo pedido (ruta protegida por JWT).
+
+## 8. FIGMA
+El diseño del figma: [Figma](https://www.figma.com/design/dzGfe15XuEdIiKo47wZF83/WEB-SUSHI?node-id=0-1&t=xefsRNpqCJmRRQQV-1)
