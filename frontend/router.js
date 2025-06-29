@@ -10,6 +10,18 @@ import './components/checkout-page.js';
 import './components/blog-page.js';
 import './components/blog-post-page.js';
 import './components/account-page.js';
+import './components/create-post-page.js';
+
+const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "([0-9a-zA-Z\-]+)") + "$");
+
+const getParams = match => {
+    if (!match.result) return {};
+    const values = match.result.slice(1);
+    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
+    return Object.fromEntries(keys.map((key, i) => [key, values[i]]));
+};
+
+const navigateTo = url => { window.location.hash = url; };
 
 const router = async () => {
     const routes = [
@@ -22,25 +34,48 @@ const router = async () => {
         { path: "/login", view: () => document.createElement('login-page') },
         { path: "/register", view: () => document.createElement('registration-page') },
         { path: "/checkout", view: () => document.createElement('checkout-page') },
-        { path: "/blog", view: () => document.createElement('blog-page') },
-        { path: "/blogpage", view: () => document.createElement('blog-post-page') },
-        { path: "/account", view: () => document.createElement('account-page') },
         
+        // SOLUCIÓN: Movemos las rutas del blog para que las específicas estén primero.
+        { path: "/blog/nuevo", view: () => document.createElement('create-post-page') },
+        { path: "/blog", view: () => document.createElement('blog-page') },
+        { path: "/blog/:id", view: (params) => document.createElement('blog-post-page') },
+
+        { path: "/account", view: () => document.createElement('account-page') },
     ];
 
-    const path = location.hash.slice(1).toLowerCase() || "/";
-    let match = routes.find(route => route.path === path);
+    const potentialMatches = routes.map(route => ({
+        route: route,
+        result: location.hash.slice(1).match(pathToRegex(route.path))
+    }));
+
+    let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
 
     if (!match) {
-        match = routes[0];
+        match = { route: routes[0], result: [location.hash.slice(1)] };
         window.location.hash = "";
     }
+    
+    const params = getParams(match);
+    const view = match.route.view(params);
+
+    Object.keys(params).forEach(key => {
+        view.setAttribute(key, params[key]);
+    });
 
     const app = document.querySelector("#app-root");
-    if (!app) return;
-    app.innerHTML = ""; 
-    app.appendChild(match.view()); 
+    app.innerHTML = "";
+    app.appendChild(view);
 };
 
-window.addEventListener("hashchange", router);
+window.addEventListener("popstate", router);
 window.addEventListener("load", router);
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("click", e => {
+        const targetLink = e.target.closest("[data-link]");
+        if (targetLink) {
+            e.preventDefault();
+            navigateTo(targetLink.getAttribute("href"));
+        }
+    });
+});

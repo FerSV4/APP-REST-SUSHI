@@ -1,22 +1,19 @@
 const jwt = require('jsonwebtoken');
 
-const protegerRuta = (req, res, next) => {
+const identificarUsuario = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
     if (token == null) {
-        return res.sendStatus(401);
+        return next();
     }
-//Metodo para verificar el token
+
     jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
-        if (err) {
-            return res.sendStatus(403); 
+        if (!err) {
+            req.usuario = usuario;
         }
-        req.usuario = usuario; 
-        next(); 
+        next();
     });
 };
 
-module.exports = {
-    protegerRuta,
-};
+module.exports = { identificarUsuario };

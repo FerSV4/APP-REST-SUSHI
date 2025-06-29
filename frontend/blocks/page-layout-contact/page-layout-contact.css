@@ -1,3 +1,4 @@
+
 .page-layout {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -36,6 +37,39 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr; 
-    gap: 30px; /* Decidimos mantener 30px */
+    gap: 30px;
     color: white;
+    overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+    .page-layout--contact {
+        grid-template-columns: 1fr;
+    }
+
+    .page-layout--contact .page-layout__main-content {
+        height: 50vh;
+    }
+
+    .page-layout__title {
+        font-size: 4rem;
+        left: 30px;
+        bottom: 30px;
+    }
+
+    .page-layout__sidebar {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-layout__title {
+        font-size: 3.5rem;
+    }
+    .page-layout__sidebar {
+        padding: 20px;
+        gap: 20px;
+    }
 }

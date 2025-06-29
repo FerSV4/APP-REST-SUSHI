@@ -17,7 +17,7 @@ const registrarUsuario = async (req, res) => {
     });
 
     res.status(201).json({
-        mensaje: 'Usuario registrado con éxito',
+        mensaje: 'Usuario registrado correctamente :)',
         usuario: {
             id: nuevoUsuario.id,
             nombre: nuevoUsuario.nombre,
@@ -35,13 +35,13 @@ const iniciarSesion = async (req, res) => {
     });
 
     if (!usuario) {
-        return res.status(404).json({ mensaje: "Ese usuario no existe" });
+        return res.status(404).json({ mensaje: "Usuario no existente" });
     }
 
     const contrasenaValida = await bcrypt.compare(password, usuario.contrasena_hash);
 
     if (!contrasenaValida) {
-        return res.status(401).json({ mensaje: "Credenciales incorrectas, intentelo de nuevo" });
+        return res.status(401).json({ mensaje: "Credenciales incorrectas." });
     }
 
     const payload = {
@@ -55,7 +55,7 @@ const iniciarSesion = async (req, res) => {
     });
 
     res.json({
-        mensaje: 'Ahora estas logueado!',
+        mensaje: 'Login Exitoso, continua :)',
         token: token
     });
 };

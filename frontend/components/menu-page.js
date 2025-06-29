@@ -1,7 +1,7 @@
 import { servicioCarrito } from '../services/carrito-observer-single.js';
 const menuPageTemplate = document.createElement('template');
 menuPageTemplate.innerHTML = `
-    <link rel="stylesheet" href="blocks/layout-split/layout-split.css">
+    <link rel="stylesheet" href="blocks/layout-split-menu/layout-split-menu.css">
     <link rel="stylesheet" href="blocks/site-header/site-header.css">
     <link rel="stylesheet" href="blocks/menu-filter/menu-filter.css">
     <link rel="stylesheet" href="blocks/menu-category/menu-category.css">
@@ -13,9 +13,6 @@ menuPageTemplate.innerHTML = `
             height: 100vh;
             object-fit: cover;
             display: block;
-        }
-        .layout-split__sidebar {
-            padding: 40px;
         }
         #menu-list-container {
             margin-top: 40px;
