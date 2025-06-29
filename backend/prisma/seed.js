@@ -1,3 +1,4 @@
+//Este archivo es un script de prisma para extraer datos de un json e insertarlos en una DB
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const path = require('path');
@@ -5,9 +6,7 @@ const path = require('path');
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log('Iniciando el proceso de seeding...');
-
-    console.log('Poblando publicaciones de blog...');
+    console.log('Seed init');
     
     const blogDataPath = path.join(__dirname, '../data/blog.json');
     const blogData = JSON.parse(fs.readFileSync(blogDataPath, 'utf-8'));
@@ -23,10 +22,10 @@ async function main() {
                 autor_id: autorIdExistente, 
             },
         });
-        console.log(`- Post creado: ${post.titulo}`);
+        console.log(`${post.titulo}`);
     }
     
-    console.log('Seeding de publicaciones de blog completado.');
+    console.log('Hecho');
 }
 
 main()

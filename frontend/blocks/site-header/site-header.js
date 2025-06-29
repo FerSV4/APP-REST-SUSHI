@@ -3,90 +3,101 @@ import { servicioAuth } from '../../services/auth-service.js';
 const template = document.createElement('template');
 
 template.innerHTML = `
-    <style>
-    :host { 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        font-family: 'Montserrat', sans-serif; 
-    }
-    .left-panel {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background-color: black;
-        padding: 10px 25px;
-        border-radius: 50px;
-    }
-    .right-panel {
-        display: flex;
-        margin-right: 5%;
-        align-items: center;
-        gap: 15px;
-    }
-    .logo {
-        margin-top: 5px;
-    }
-    .hamburger-button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    nav a {
-        color: #a0a0a0;
-        text-decoration: none;
-        font-size: 0.8rem;
-    }
-    nav a:hover {
-        color: white;
-    }
-    .nav-link--highlight {
-        background-color: #333;
-        color: white !important;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-weight: bold;
-    }
-    .action-link {
-        background-color: black;
-        border-radius: 8px;
-        width: 40px;
-        height: 40px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .action-link img {
-        height: 18px;
-    }
-    .registration-button {
-        background-color: black;
-        border: 1px solidrgb(26, 26, 26);
-        color:rgb(246, 246, 246);
-        padding: 12px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 0.8rem;
-        font-weight: normal;
-    }
-    .registration-button:hover {
-        background-color:rgb(194, 191, 184);
-        color: black;
-    }
-    .user-actions, .guest-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+     <style>
+        :host { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif; 
+        }
+        .left-panel {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: black;
+            padding: 10px 25px;
+            border-radius: 12px;
+        }
+        .right-panel {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 6%;
+        }
+        .logo {
+            margin-top: 5px;
+        }
+        .hamburger-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex; 
+            align-items: center;
+        }
+        
+        nav {
+            display: none;
+        }
+        @media (min-width: 1200px) {
+
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        nav a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        nav a:hover {
+            color: white;
+        }
+        .nav-link--highlight {
+            background-color: #333;
+            color: white !important;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .action-link {
+            background-color: black;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .action-link img {
+            height: 18px;
+        }
+        .registration-button {
+            background-color: black;
+            border: 1px solidrgb(26, 26, 26);
+            color:rgb(246, 246, 246);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+        .registration-button:hover {
+            background-color:rgb(106, 106, 106);
+            color: black;
+        }
+        .user-actions, .guest-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
     </style>
+    
     
     <div class="left-panel">
         <button class="hamburger-button">≡</button>

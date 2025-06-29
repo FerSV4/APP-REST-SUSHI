@@ -46,6 +46,14 @@
     }
 
     .layout-split__sidebar {
-        padding: 30px;
+        padding: 30px; 
+        margin-top: 37%;
     }
 }
+@media (max-width: 600px) {
+    .layout-split__sidebar {
+        padding: 30px; 
+        margin-top: 56%;
+    }
+}
+

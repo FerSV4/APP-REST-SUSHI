@@ -5,7 +5,8 @@ const cors = require('cors');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const productoRoutes = require('./routes/productoRoutes');
 const pedidoRoutes = require('./routes/pedidoRoutes');
-const blogRoutes = require('./routes/blogRoutes'); // <-- 1. ¿Está esta línea importando tus rutas?
+const blogRoutes = require('./routes/blogRoutes');
+const reservaRoutes = require('./routes/reservaRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/productos', productoRoutes);
 app.use('/api/pedidos', pedidoRoutes);
 app.use('/api/blog', blogRoutes); 
+app.use('/api/reservas', reservaRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);

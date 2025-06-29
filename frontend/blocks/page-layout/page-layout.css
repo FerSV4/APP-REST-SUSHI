@@ -1,3 +1,4 @@
+
 .page-layout {
     display: grid;
     grid-template-columns: 1fr 320px; 
@@ -16,4 +17,26 @@
     background-color: #181818;
     display: flex;
     flex-direction: column;
+}
+@media (max-width: 900px) {
+    .page-layout {
+        grid-template-columns: 1fr;
+        height: auto; 
+    }
+
+    .page-layout__main-content {
+        height: 80vh; 
+        padding: 0;
+    }
+
+    .page-layout__sidebar {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-layout__main-content {
+        height: 70vh;
+    }
+
 }

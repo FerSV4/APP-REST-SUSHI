@@ -1,3 +1,5 @@
+import { servicioAuth } from '../services/auth-service.js';
+
 const reservationPageTemplate = document.createElement('template');
 reservationPageTemplate.innerHTML = `
     <link rel="stylesheet" href="blocks/layout-split/layout-split.css">
@@ -32,7 +34,7 @@ reservationPageTemplate.innerHTML = `
                 <input type="email" name="email" placeholder="Email" class="reservation-form__input" required>
 
                 <div class="reservation-form__row">
-                    <input type="number" name="guests" placeholder="Guests" class="reservation-form__input" required>
+                    <input type="number" name="guests" placeholder="Guests" class="reservation-form__input" required min="1">
                     <input type="date" name="date" placeholder="Date" class="reservation-form__input" required>
                     <input type="time" name="time" placeholder="Time" class="reservation-form__input" required>
                 </div>
@@ -48,7 +50,47 @@ class ReservationPage extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(reservationPageTemplate.content.cloneNode(true));
+        
+        this.formularioReserva = this.shadowRoot.querySelector('.reservation-form');
+    }
+
+    connectedCallback() {
+        this.formularioReserva.addEventListener('submit', evento => {
+            this.manejarEnvioReserva(evento);
+        });
+    }
+
+    async manejarEnvioReserva(evento) {
+        evento.preventDefault();
+
+        const formData = new FormData(this.formularioReserva);
+        const datos = Object.fromEntries(formData.entries());
+
+        const token = servicioAuth.obtenerToken();
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const respuesta = await fetch('http://localhost:3000/api/reservas', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(datos)
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert(resultado.mensaje);
+            this.formularioReserva.reset();
+        } else {
+            alert(`Error: ${resultado.mensaje || 'No se pudo enviar la solicitud.'}`);
+        }
     }
 }
 
 customElements.define('reservation-page', ReservationPage);
+

@@ -30,7 +30,7 @@ const crearPedido = async (req, res) => {
     });
 
     res.status(201).json({
-        mensaje: "Se creó el pedido correctamente",
+        mensaje: "Pedido creado :)",
         pedido: resultado
     });
 };
