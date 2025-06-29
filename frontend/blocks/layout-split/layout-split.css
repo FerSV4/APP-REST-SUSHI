@@ -1,18 +1,21 @@
+/* Estilos base (para escritorio) que ya tenías */
 .layout-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    /* Eliminamos la altura fija para permitir el scroll en la página entera */
 }
 
 .layout-split__main {
     position: sticky;
     top: 0;
-    height: 100vh;   
+    height: 100vh;
     position: relative; 
 }
 
 .layout-split__sidebar {
+    background-color: #181818;
     color: white;
-
+    padding: 40px;
 }
 
 .layout-split__title {
@@ -20,9 +23,36 @@
     bottom: 50px;
     left: 50px;
     color: white;
-    font-size: 5rem;
+    font-size: 7rem;
     line-height: 1.1;
     margin: 0;
     font-family: 'Times New Roman', serif;
     font-weight: normal;
+}
+
+/* --- SOLUCIÓN RESPONSIVA --- */
+/* Estilos que se aplicarán en pantallas con un ancho MÁXIMO de 900px (tablets y móviles) */
+@media (max-width: 900px) {
+    .layout-split {
+        /* Hacemos que la grilla tenga una sola columna, apilando los elementos */
+        grid-template-columns: 1fr;
+    }
+
+    .layout-split__main {
+        /* La columna principal ya no se queda pegada */
+        position: relative; 
+        /* Le damos una altura fija más pequeña, no toda la pantalla */
+        height: 60vh;
+    }
+
+    .layout-split__title {
+        /* Reducimos el tamaño del texto en pantallas más pequeñas */
+        font-size: 4rem;
+        left: 30px;
+        bottom: 30px;
+    }
+
+    .layout-split__sidebar {
+        padding: 30px; /* Reducimos un poco el padding */
+    }
 }

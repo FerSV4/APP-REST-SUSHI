@@ -14,8 +14,12 @@ aboutPageTemplate.innerHTML = `
         }
         .layout-split__sidebar {
             padding-left: 10%;
+            padding-right: 10%;
+            padding-top: 2%;
+            padding-bottom: 0%;
             display: flex;
             flex-direction: column;
+
         }
     </style>
 

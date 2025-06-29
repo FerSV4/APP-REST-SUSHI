@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 2%;
 }
 .story-panel__image {
     width: 100%;

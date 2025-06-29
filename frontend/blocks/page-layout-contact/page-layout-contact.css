@@ -1,3 +1,4 @@
+/* Estilos base (para escritorio) */
 .page-layout {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -36,6 +37,50 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr; 
-    gap: 30px; /* Decidimos mantener 30px */
+    gap: 30px;
     color: white;
+    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+}
+
+
+/* --- SOLUCIÓN RESPONSIVA --- */
+
+/* Estilos para Tablets y Móviles (pantallas de 900px de ancho o menos) */
+@media (max-width: 900px) {
+    .page-layout--contact {
+        /* 1. Apilamos las columnas principales: el contenido irá arriba y la sidebar debajo. */
+        grid-template-columns: 1fr;
+    }
+
+    .page-layout--contact .page-layout__main-content {
+        /* 2. Reducimos la altura de la imagen principal para que no ocupe toda la pantalla. */
+        height: 50vh;
+    }
+
+    .page-layout__title {
+        /* 3. Hacemos el título más pequeño. */
+        font-size: 4rem;
+        left: 30px;
+        bottom: 30px;
+    }
+
+    .page-layout__sidebar {
+        /* 4. Dentro de la sidebar, también apilamos sus 4 cuadrantes en una sola columna. */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto; /* Las filas se ajustarán al contenido */
+        padding: 30px;
+    }
+}
+
+
+/* Ajustes más finos para pantallas de móvil (600px de ancho o menos) */
+@media (max-width: 600px) {
+    .page-layout__title {
+        /* 5. Hacemos el título aún más pequeño para móviles. */
+        font-size: 3.5rem;
+    }
+    .page-layout__sidebar {
+        padding: 20px;
+        gap: 20px;
+    }
 }

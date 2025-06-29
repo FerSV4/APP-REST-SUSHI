@@ -2,11 +2,16 @@
     display: grid;
     grid-template-columns: 120px 1fr;
     gap: 25px;
-    align-items: center;
+    align-items: start;
     padding: 25px 0;
     border-bottom: 1px solid #333;
     text-decoration: none;
     color: #a0a0a0;
+}
+
+/* SOLUCIÓN: Se añade esta nueva regla */
+.blog-post-summary__image-wrapper {
+    position: relative; /* Convierte este div en el contexto de posicionamiento para el botón */
 }
 
 .blog-post-summary__image {
@@ -14,6 +19,7 @@
     height: 80px;
     object-fit: cover;
     border-radius: 8px;
+    display: block; /* Asegura que no haya espacios extra */
 }
 
 .blog-post-summary__date {
@@ -25,9 +31,8 @@
 .blog-post-summary__title {
     font-size: 1.1rem;
     font-family: 'Times New Roman', serif;
-    color: #EFE7D2;
+    color: white;
     margin: 0 0 10px 0;
-    font-weight: lighter;
 }
 
 .blog-post-summary__excerpt {
