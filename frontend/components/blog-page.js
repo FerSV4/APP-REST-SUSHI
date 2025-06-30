@@ -161,7 +161,7 @@ class BlogPage extends HTMLElement {
         }
         
         const token = servicioAuth.obtenerToken();
-        const respuesta = await fetch(`http://localhost:3000/api/blog/${id}`, {
+        const respuesta = await fetch(`/api/blog/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -203,7 +203,7 @@ class BlogPage extends HTMLElement {
         };
         
         const token = servicioAuth.obtenerToken();
-        const respuesta = await fetch(`http://localhost:3000/api/blog/${id}`, {
+        const respuesta = await fetch(`/api/blog/${id}`, {
             method: 'PUT',
             headers: { 
                 'Content-Type': 'application/json',
