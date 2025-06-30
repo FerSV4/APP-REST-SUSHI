@@ -17,6 +17,7 @@ APP-REST-SUSHI/
 │   │   └── pedidoController.js
 │   ├── middleware/
 │   │   └── authMiddleware.js # Middleware para manejo de rutas con Json Web Tokens
+|   |   └── identificarUsuarioMiddleware.js # Middleware para manejo de usuario likes 
 │   ├── routes/
 │   │   ├── usuarioRoutes.js
 │   │   └── productoRoutes.js
@@ -52,7 +53,7 @@ APP-REST-SUSHI/
 └── .gitignore
 ```
 ## 2.BASE DE DATOS
-![Base de datos](/schema_design/DBappweb.png)
+![Base de datos](/schema_design/DiagramaDB.png)
 
 
 ## 3.Patrones de diseño
@@ -151,6 +152,8 @@ npm run dev
 * GET /api/productos: Productos por categoria
   
 * POST /api/pedidos: Crea un nuevo pedido (ruta protegida por JWT).
+
+* POST /api/reserva: Crear reserva
 
 ## 8. FIGMA
 El diseño del figma: [Figma](https://www.figma.com/design/dzGfe15XuEdIiKo47wZF83/WEB-SUSHI?node-id=0-1&t=xefsRNpqCJmRRQQV-1)
