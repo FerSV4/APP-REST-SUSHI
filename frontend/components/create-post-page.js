@@ -78,7 +78,7 @@ class CreatePostPage extends HTMLElement {
 
         const token = servicioAuth.obtenerToken();
 
-        const respuesta = await fetch('http://localhost:3000/api/blog', {
+        const respuesta = await fetch('/api/blog', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ reservationPageTemplate.innerHTML = `
 
     <style>
         .layout-split__main {
-            background-image: url('./assets/images/main-reservation.png');
+            background-image: url('/assets/images/Main-reservation.png');
         }
         .layout-split__sidebar {
             display: flex;
@@ -75,7 +75,7 @@ class ReservationPage extends HTMLElement {
             headers['Authorization'] = `Bearer ${token}`;
         }
         
-        const respuesta = await fetch('http://localhost:3000/api/reservas', {
+        const respuesta = await fetch('/api/reservas', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(datos)

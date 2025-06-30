@@ -97,7 +97,7 @@ menuPageTemplate.innerHTML = `
     <div class="layout-split">
         <main class="layout-split__main">
             <div style="position: relative; width: 100%; height: 100%;">
-                <img src="./assets/images/menu.png" class="main-hero__image" id="main-product-image">
+                <img src="./assets/images/Menu.png" class="main-hero__image" id="main-product-image">
                 <site-header></site-header>
                 <h1 class="layout-split__title" id="main-hero-title">MENU</h1>
                 <button class="main-hero__add-btn">+</button>
@@ -168,7 +168,7 @@ class MenuPage extends HTMLElement {
     }
 
     async cargarDatosDelMenu() {
-        const respuesta = await fetch('http://localhost:3000/api/productos');
+        const respuesta = await fetch('/api/productos');
         const datosMenu = await respuesta.json();
         this.todasLasCategorias = datosMenu;
         this.menuCompleto = this.todasLasCategorias.flatMap(cat => cat.items);
