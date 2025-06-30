@@ -233,18 +233,18 @@ class BlogPage extends HTMLElement {
     }
     
     async cargarArticulos() {
-        const respuesta = await fetch('http://localhost:3000/api/blog');
+        const respuesta = await fetch('/api/blog');
         const articulos = await respuesta.json();
         this.renderizarArticulos(articulos);
     }
 
     async cargarMisArticulos() {
-        const articulos = await this.fetchConToken('http://localhost:3000/api/blog/mis-articulos');
+        const articulos = await this.fetchConToken('/api/blog/mis-articulos');
         this.renderizarArticulos(articulos);
     }
     
     async cargarArticulosFavoritos() {
-        const articulos = await this.fetchConToken('http://localhost:3000/api/blog/favoritos');
+        const articulos = await this.fetchConToken('/api/blog/favoritos');
         this.renderizarArticulos(articulos);
     }
 
@@ -254,7 +254,7 @@ class BlogPage extends HTMLElement {
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         }
-        await fetch(`http://localhost:3000/api/blog/${postId}/like`, {
+        await fetch(`/api/blog/${postId}/like`, {
             method: 'POST',
             headers: headers,
         });
