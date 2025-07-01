@@ -92,6 +92,10 @@ class BlogPage extends HTMLElement {
         this.createPostBtn = this.shadowRoot.querySelector('#create-post-btn');
         
         this.activeFilter = 'ALL';
+        this.ArrayArticulos = [];
+        this.ArticulosVisibles = 0;
+        this.CantidadPorScroll = 5;
+        this.Observer = null;
     }
 
     connectedCallback() {
@@ -235,7 +239,54 @@ class BlogPage extends HTMLElement {
     async cargarArticulos() {
         const respuesta = await fetch('http://localhost:3000/api/blog');
         const articulos = await respuesta.json();
-        this.renderizarArticulos(articulos);
+        this.ArrayArticulos = articulos;
+        this.ArticulosVisibles = 0;
+        this.postsContainer.innerHTML = '';
+        this.renderizarMasArticulos();
+    }
+
+    renderizarMasArticulos() {
+        const articulosParaMostrar = this.ArrayArticulos.slice(
+            this.ArticulosVisibles,
+            this.ArticulosVisibles + this.CantidadPorScroll
+        );
+
+        articulosParaMostrar.forEach(post => {
+            this.postsContainer.innerHTML += this.crearHtmlParaPost(post, this.activeFilter);
+        });
+
+        this.ArticulosVisibles += this.CantidadPorScroll;
+
+        const sentinelExistente = this.shadowRoot.querySelector('#sentinel-scroll');
+        if (sentinelExistente) sentinelExistente.remove();
+
+        if (this.ArticulosVisibles < this.ArrayArticulos.length) {
+            const nuevoSentinel = document.createElement('div');
+            nuevoSentinel.id = 'sentinel-scroll';
+            nuevoSentinel.style.height = '1px';
+            this.postsContainer.appendChild(nuevoSentinel);
+            this.configurarObserver();
+        }
+    }
+
+    configurarObserver() {
+        if (this.Observer) this.Observer.disconnect();
+
+        const sentinel = this.shadowRoot.querySelector('#sentinel-scroll');
+        if (!sentinel) return;
+
+        this.Observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                this.Observer.disconnect();
+                this.renderizarMasArticulos();
+            }
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 1.0
+        });
+
+        this.Observer.observe(sentinel);
     }
 
     async cargarMisArticulos() {
